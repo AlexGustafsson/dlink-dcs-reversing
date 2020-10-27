@@ -1,0 +1,11 @@
+FROM debian:buster-slim
+
+RUN apt-get update && \
+  apt-get install -y python3 git squashfs-tools python3-pip && \
+  git clone https://github.com/ReFirmLabs/binwalk.git && \
+  cd binwalk && \
+  python3 setup.py install
+
+VOLUME /output
+
+ENTRYPOINT ["binwalk"]
